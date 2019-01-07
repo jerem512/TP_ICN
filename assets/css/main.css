@@ -1,6 +1,25 @@
 h1{
 	text-align: center;
 }
-.img{
-	margin: auto;
+p{
+	text-align: justify;
+	margin-right: 15px;
+	height: auto;
+	font-size: 20px;
+}
+.img {
+	margin-left:0px;
+	margin-top: 0px;
+	margin-right: 10px;
+	margin-bottom: 0px;
+    float: left
+}
+.accueil{
+	text-align: center;
+}
+u{
+	text-align: center;
+}
+h2{
+	text-align: center;
 }
