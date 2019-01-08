@@ -9,27 +9,27 @@
 if(isset($_POST['login'], $_POST['password'])){
     $req=$bdd->prepare('SELECT id, login, password FROM users WHERE login = :login');
     $req->bindParam(':login',$_POST['login']);
-    $resultat=$req->execute();
-    $isPasswordCorrect = password_verify($_POST['password'], $resultat['password']);
-    var_dump($resultat);
+    $req->execute();
+    $resultat = $req->fetch();
+    
 }
 if(!$resultat)
 {
     echo 'Mauvais identifiant ou mot de passe !';
-    // header("Refresh: 0; URL=admin.php");
+    header("Refresh: 0; URL=admin.php");
 }
 else
 {
-    if($isPasswordCorrect){
+    if($_POST['password'] === $resultat['password']){
         session_start();
         echo 'Vous êtes connectés !';
         $_SESSION['login'] = $resultat['login'];
         $_SESSION['id'] = $resultat['id'];
-        // header("Refresh: 0; URL=news.php");
+        header("Refresh: 0; URL=newscontrol.php");
     }
     else{
-        echo 'Mauvais identifiant ou mot d passe !';
-        // header("Refresh: 0; URL=admin.php");
+        echo 'Mauvais identifiant ou mot de passe!';
+        header("Refresh: 0; URL=admin.php");
     }
 }
 ?>
